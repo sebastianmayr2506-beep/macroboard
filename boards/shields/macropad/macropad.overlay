@@ -10,7 +10,7 @@
         compatible = "zmk,matrix-transform";
         columns = <6>;
         rows = <1>;
-        map = 
+        map = <
             RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)
         >;
     };
@@ -21,7 +21,7 @@
         input-gpios
             = <&gpio0 31 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&gpio0 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&gpio0  2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
