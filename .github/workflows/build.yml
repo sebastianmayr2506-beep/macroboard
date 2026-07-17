@@ -1,6 +1,31 @@
 name: Build ZMK firmware
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: firmware
+          path: firmware/
+
+      - name: Upload as Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Macropad Firmware (latest)
+          body: "Automatisch gebaute Firmware. Einfach die .uf2 Datei auf den Controller ziehen."
+          files: firmware/*.uf2
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
