@@ -6,38 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:stable
-    steps:
-      - name: Checkout config
-        uses: actions/checkout@v4
-        with:
-          path: config
-
-      - name: Init west
-        run: |
-          west init -l config/config
-          west update
-          west zephyr-export
-
-      - name: Build firmware
-        run: |
-          west build -s zmk/app -b nice_nano_v2 -- \
-            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config/config" \
-            -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}/config" \
-            -DSHIELD=macropad \
-            -DSNIPPET=studio-rpc-usb-uart \
-            -DCONFIG_ZMK_STUDIO=y
-
-      - name: Rename firmware
-        run: cp build/zephyr/zmk.uf2 macropad-nice_nano_v2-zmk.uf2
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: macropad-nice_nano_v2-zmk.uf2
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
 
   release:
     needs: build
