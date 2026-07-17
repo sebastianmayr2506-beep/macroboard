@@ -5,3 +5,5 @@ type: shield
 url: https://github.com/sebastianmayr2506-beep/macroboard
 requires:
   - pro_micro
+features:
+  - studio
