@@ -5,6 +5,7 @@
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &macropad_layout;
+        zmk,studio-rpc-uart = &snippet_studio_rpc_usb_uart;
     };
 
     macropad_layout: macropad_layout {
@@ -42,5 +43,11 @@
             , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
+    };
+};
+
+&zephyr_udc0 {
+    snippet_studio_rpc_usb_uart: snippet_studio_rpc_usb_uart {
+        compatible = "zephyr,cdc-acm-uart";
     };
 };
