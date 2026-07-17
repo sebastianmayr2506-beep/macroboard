@@ -1,0 +1,7 @@
+file_format: "1"
+id: macropad
+name: Macropad
+type: shield
+url: https://github.com/sebastianmayr2506-beep/macroboard
+requires:
+  - pro_micro
