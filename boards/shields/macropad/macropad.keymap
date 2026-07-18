@@ -15,8 +15,8 @@
 
         fn_layer {
             bindings = <
-                &bootloader  &bt BT_CLR  &none
-                &none        &none       &none
+                &studio_unlock  &bootloader  &bt BT_CLR
+                &none           &none        &none
             >;
         };
     };
